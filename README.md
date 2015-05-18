@@ -65,3 +65,12 @@ Copy the hook :
 cd [my_project]
 cp scripts/code-quality/code-quality-pre-commit-hook.sh .git/hooks/pre-commit
 ```
+
+
+
+## Running test
+
+Tests will automatically run when you commit if you have enabled the GIt hook, but if you want to run them manually you can do the following :
+```shell
+grunt --gruntfile [my_project]/scripts/code-quality/Gruntfile.js
+```
