@@ -68,7 +68,7 @@ cp scripts/code-quality/code-quality-pre-commit-hook.sh .git/hooks/pre-commit
 
 
 
-## Running test
+## Running tests
 
 Tests will automatically run when you commit if you have enabled the GIt hook, but if you want to run them manually you can do the following :
 ```shell
