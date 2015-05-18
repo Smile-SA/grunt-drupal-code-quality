@@ -22,10 +22,12 @@ EXIT_CODE=$((${EXIT_CODE} + $?))
 
 
 
-# Exit if errors
-if [[ ${EXIT_CODE} -ne 0 ]]; then
+# Errors
+if [ $EXIT_CODE -ne 0 ]
+then
     echo ""
     echo "Problems were found"
     echo "Commit aborted."
-    exit ${EXIT_CODE}
 fi
+
+exit ${EXIT_CODE}
