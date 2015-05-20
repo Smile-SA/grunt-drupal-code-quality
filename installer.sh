@@ -8,6 +8,11 @@ Usage :
   installer.sh [action] [options]
 
 Options :
+  --project-dir=<dir>
+    Specify the location of the project used for running quality tools.
+    By default it is equal to the current directory when launching the installation.
+    Example : --project-dir=src
+
   --install-dir=<dir>
     Specify the installation directory of the code quality tools.
     By default it is equal to './scripts/code-quality'.
@@ -40,6 +45,7 @@ NODE_MIN_VERSION=0.8.0
 
 # Default variables initialization.
 GIT_BRANCH=master
+PROJECT_DIR=.
 INSTALL_DIR=./scripts/code-quality
 GIT_HOOKS_DIR=./.git/hooks
 INSTALL_GIT_HOOK=1
@@ -50,8 +56,10 @@ do
     case $VAR in
         --no-git )
             INSTALL_GIT_HOOK=0;;
+        --project-dir* )
+            PROJECT_DIR=$(echo $VAR | cut -d "=" -f 2);;
         --install-dir* )
-           INSTALL_DIR=$(echo $VAR | cut -d "=" -f 2);;
+            INSTALL_DIR=$(echo $VAR | cut -d "=" -f 2);;
         --git-hooks-dir* )
             GIT_HOOKS_DIR=$(echo $VAR | cut -d "=" -f 2);;
         help )
@@ -100,6 +108,7 @@ test $EXIT_CODE -gt 0 && { echo "Aborting."; exit ${EXIT_CODE}; }
 mkdir -p $INSTALL_DIR
 
 # Transform relative path to absolute path.
+PROJECT_DIR=`readlink -f $PROJECT_DIR`
 INSTALL_DIR=`readlink -f $INSTALL_DIR`
 GIT_HOOKS_DIR=`readlink -f $GIT_HOOKS_DIR`
 
@@ -110,6 +119,10 @@ tar -xf $GIT_BRANCH.tar.gz
 find Code-quality-$GIT_BRANCH -maxdepth 1 -mindepth 1 -type f -exec mv {} $INSTALL_DIR \;
 rmdir Code-quality-$GIT_BRANCH
 rm -f $GIT_BRANCH.tar.gz
+
+# Create environment files containing data for hook.
+touch $INSTALL_DIR/env.cfg
+echo "PROJECT_DIR=$PROJECT_DIR" >> env.cfg
 
 # Install dependencies
 echo "Installing project dependencies."

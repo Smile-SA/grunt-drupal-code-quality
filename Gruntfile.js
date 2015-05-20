@@ -1,7 +1,12 @@
 'use strict';
 
 module.exports = function(grunt) {
-  var projectDir = './../../src';
+  var path = require('path');
+  var installDir = __dirname;
+  var projectDir = path.resolve('.');
+
+  /* Reset grunt base path */
+  grunt.file.setBase(installDir);
 
   /* Load configuration */
   grunt.initConfig({
@@ -20,7 +25,6 @@ module.exports = function(grunt) {
       }
     }
   });
-
 
   /* Load all plugins */
   grunt.loadNpmTasks("grunt-contrib-csslint");

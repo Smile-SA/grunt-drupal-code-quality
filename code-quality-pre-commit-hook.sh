@@ -12,10 +12,13 @@ INSTALL_DIR=`readlink -f $0 | xargs dirname`
 # Binaries.
 GRUNT_BIN=`command -v grunt`
 
+# Load project environment variables.
+. $INSTALL_DIR/env.cfg
+
 
 
 # Begin Grunt hook
-$GRUNT_BIN --gruntfile $INSTALL_DIR/Gruntfile.js
+$GRUNT_BIN --base PROJECT_DIR --gruntfile $INSTALL_DIR/Gruntfile.js
 EXIT_CODE=$((${EXIT_CODE} + $?))
 
 
