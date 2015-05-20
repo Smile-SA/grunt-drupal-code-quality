@@ -1,6 +1,6 @@
 {
   "name": "code-quality",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Code quality tools for Drupal 8.",
   "main": "Gruntfile.js",
   "dependencies": {},

@@ -43,7 +43,7 @@ Installation command :
 
 You can use an other branch or tag instead of using "master" :
 ```shell
-\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.1
+\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.2
 ```
 
 
