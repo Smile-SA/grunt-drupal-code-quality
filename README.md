@@ -46,9 +46,6 @@ You can use an other branch or tag instead of using "master" :
 \curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.1
 ```
 
-**Note** : target directory must be created before running the installation command.  
-By default it is equal to `./scripts/code-quality'` but you can changin with options (see below).
-
 
 ### Options
 

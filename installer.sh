@@ -89,15 +89,15 @@ fi
 # Check grunt.
 GRUNT_BIN=`command -v grunt` || { ((EXIT_CODE++)); echo "grunt was not found."; }
 
-# Check target directory exists.
-test -d $INSTALL_DIR|| { ((EXIT_CODE++)); echo "Target directory does not exist."; echo "Please create it or change it by using the --install-dir option."; }
-
 # Exits if problems were detected.
 test $EXIT_CODE -gt 0 && { echo "Aborting."; exit ${EXIT_CODE}; }
 
 
 
 ########## Start installation ##########
+
+# Create target directory.
+mkdir -p $INSTALL_DIR
 
 # Transform relative path to absolute path.
 INSTALL_DIR=`readlink -f $INSTALL_DIR`
@@ -106,9 +106,10 @@ GIT_HOOKS_DIR=`readlink -f $GIT_HOOKS_DIR`
 # Download and extract archive.
 echo "Downloading archive."
 wget https://github.com/tonai/code-quality/archive/$GIT_BRANCH.tar.gz || { echo "Given tag or branch does not exist."; exit 1; }
-tar -xf master.tar.gz
-mv Code-quality-master $INSTALL_DIR
-rm -f master.tar.gz
+tar -xf $GIT_BRANCH.tar.gz
+find Code-quality-$GIT_BRANCH -maxdepth 1 -mindepth 1 -type f -exec mv {} $INSTALL_DIR \;
+rmdir Code-quality-$GIT_BRANCH
+rm -f $GIT_BRANCH.tar.gz
 
 # Install dependencies
 echo "Installing project dependencies."
