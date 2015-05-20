@@ -5,19 +5,17 @@
 
 
 
-# Define variables
+# Base variables.
 EXIT_CODE=0
-PROJECT_DIR=$(pwd)
-CQ_DIR=$(pwd)/scripts/code-quality
+INSTALL_DIR=`readlink -f $0 | xargs dirname`
 
-# Binaries
-GRUNT_BIN=/usr/bin/grunt
+# Binaries.
+GRUNT_BIN=`command -v grunt`
 
 
 
 # Begin Grunt hook
-cd $CQ_DIR
-${GRUNT_BIN}
+$GRUNT_BIN --gruntfile $INSTALL_DIR/Gruntfile.js
 EXIT_CODE=$((${EXIT_CODE} + $?))
 
 
