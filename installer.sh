@@ -1,5 +1,37 @@
 #!/bin/bash
 
+########## Help ##########
+usage()
+{
+  printf "%b" "
+Usage :
+  installer.sh [action] [options]
+
+Options :
+  --install-dir=<dir>
+    Specify the installation directory of the code quality tools.
+    By default it is equal to './scripts/code-quality'.
+    Example : --install-dir=/root/code-quality
+
+  --git-hooks-dir=<dir>
+    Specify the location of the Git hooks directory.
+    By default it is equal to './.git/hooks'.
+    Example : --git-hooks-dir=my_project/.git/hooks
+
+  --no-git
+    Use this option if don't use Git or if you don't want the pre-commit hook to be installed.
+
+Actions :
+  * help     - Displays this output.
+  * master   - Installs from the master branch (default).
+  * <branch> - Installs from the given branch.
+  * <tag>    - Installs from the given tag.
+
+"
+}
+
+
+
 ########## Variables initialization ##########
 
 # Base variables.
@@ -7,6 +39,7 @@ EXIT_CODE=0
 NODE_MIN_VERSION=0.8.0
 
 # Default variables initialization.
+GIT_BRANCH=master
 INSTALL_DIR=./scripts/code-quality
 GIT_HOOKS_DIR=./.git/hooks
 INSTALL_GIT_HOOK=1
@@ -15,31 +48,16 @@ INSTALL_GIT_HOOK=1
 for VAR in "$@"
 do
     case $VAR in
-        info|help|-h )
-            echo "Usage: ./`basename $0` [options]"
-            echo ""
-            echo "  * option '--install-dir' :"
-            echo "    Specify the installation directory of the code quality tools."
-            echo "    By default it is equal to './scripts/code-quality'."
-            echo "    Example : --install-dir=/root/code-quality"
-            echo ""
-            echo "  * option '--git-hooks-dir' :"
-            echo "    Specify the location of the Git hooks directory."
-            echo "    By default it is equal to './.git/hooks'."
-            echo "    Example : --git-hooks-dir=my_project/.git/hooks"
-            echo ""
-            echo "  * option '--no-git' :"
-            echo "    Use this option if don't use Git or if you don't want the pre-commit hook to be installed."
-            echo ""
-            exit 0;;
         --no-git )
             INSTALL_GIT_HOOK=0;;
         --install-dir* )
            INSTALL_DIR=$(echo $VAR | cut -d "=" -f 2);;
         --git-hooks-dir* )
             GIT_HOOKS_DIR=$(echo $VAR | cut -d "=" -f 2);;
+        help )
+            usage; exit 0;;
         * )
-            echo "Unknown argument '$VAR'.";;
+            GIT_BRANCH=$VAR;;
     esac
 done
 
@@ -60,44 +78,40 @@ verlt() {
 ########## Check requirements ##########
 
 # Check node.
-NODE_BIN=`command -v node`
-EXIT_CODE=$((${EXIT_CODE} + $?))
-if [ -z $NODE_BIN ]
+NODE_BIN=`command -v node` || { ((EXIT_CODE++)); echo "node was not found."; }
+if [ ! -z $NODE_BIN ]
 then
-  echo "node was not found."
-else
     # Check version.
     NODE_VERSION=`$NODE_BIN --version | cut -c2-`
     verlte $NODE_MIN_VERSION $NODE_VERSION || { ((EXIT_CODE++)); echo "node version >= $NODE_MIN_VERSION is required."; }
 fi
 
 # Check grunt.
-GRUNT_BIN=`command -v grunt`
-EXIT_CODE=$((${EXIT_CODE} + $?))
-if [ -z $GRUNT_BIN ]
-then
-    echo "grunt was not found."
-fi
+GRUNT_BIN=`command -v grunt` || { ((EXIT_CODE++)); echo "grunt was not found."; }
+
+# Check target directory exists.
+test -d $INSTALL_DIR|| { ((EXIT_CODE++)); echo "Target directory does not exist."; echo "Please create it or change it by using the --install-dir option."; }
 
 # Exits if problems were detected.
 test $EXIT_CODE -gt 0 && { echo "Aborting."; exit ${EXIT_CODE}; }
-echo "Continuing installation...";
 
 
 
 ########## Start installation ##########
 
-# Transform relative to absolute path.
+# Transform relative path to absolute path.
 INSTALL_DIR=`readlink -f $INSTALL_DIR`
-GIT_HOOKS_DIR=`readlink -f $INSTALL_DIR`
+GIT_HOOKS_DIR=`readlink -f $GIT_HOOKS_DIR`
 
 # Download and extract archive.
-wget https://github.com/tonai/code-quality/archive/master.tar.gz
+echo "Downloading archive."
+wget https://github.com/tonai/code-quality/archive/$GIT_BRANCH.tar.gz || { echo "Given tag or branch does not exist."; exit 1; }
 tar -xf master.tar.gz
 mv Code-quality-master $INSTALL_DIR
 rm -f master.tar.gz
 
 # Install dependencies
+echo "Installing project dependencies."
 cd $INSTALL_DIR
 npm install
 cd -
@@ -107,3 +121,5 @@ if [ $INSTALL_GIT_HOOK -eq 1 ]
 then
     ln -s $INSTALL_DIR/code-quality-pre-commit-hook.sh $GIT_HOOKS_DIR/pre-commit
 fi
+
+echo "Done."
