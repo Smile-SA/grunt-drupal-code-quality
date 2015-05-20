@@ -8,13 +8,13 @@ Code quality tools for Drupal 8.
 
 ## Prerequisites
 
-### Node
+### [Node][node]
 
-#### Node for Linux
+node >= `0.8.0` is required.
 
-Download sources :
+Linux instructions for 64 bits (need sudo) :
 ```shell
-cd /root
+cd /usr/local
 wget http://nodejs.org/dist/v0.12.3/node-v0.12.3-linux-x64.tar.gz
 tar xzf node-v0.12.3-linux-x64.tar.gz
 rm node-v0.12.3-linux-x64.tar.gz
@@ -22,50 +22,52 @@ ln -s /root/node-v0.12.3-linux-x64/bin/node /usr/bin/node
 ln -s /root/node-v0.12.3-linux-x64/bin/npm /usr/bin/npm
 ```
 
-#### Node for Windows
 
-Download and install through [installer](http://nodejs.org/download/).
+### [Grunt][grunt]
 
-
-### Grunt
-
-Install grunt command with npm globally :
+Linux instructions (need sudo) :
 ```shell
-(sudo) npm install -g grunt-cli
+npm install -g grunt-cli
 ```
 
 
 
 ## Deploying a new project
 
-### Adding the code quality tools to your GIT project
+### Using installer
 
-Install code-quality project :
+Installation command :
 ```shell
-cd [my_project]
-mkdir -p scripts/code-quality
-git archive --format=tar --remote git@git.smile.fr:drupal/code-quality.git master | tar -x -C scripts/code-quality
-git add scripts/code-quality/*
-git commit -m "Add code quality tools."
-git push
+\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master
 ```
 
-### Installing code quality tools dependencies
-
-Install code-quality dependences :
+You can use an other branch or tag instead of using "master" :
 ```shell
-cd [my_project]/scripts/code-quality
-npm install
+\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.1
 ```
 
-### Installing the GIT pre-commit hook
+**Note** : target directory must be created before running the installation command.  
+By default it is equal to `./scripts/code-quality'` but you can changin with options (see below).
 
-Copy the hook :
+
+### Options
+
+You can append options to the previous commands :
+* `--install-dir=<dir>`  
+  Specify the installation directory of the code quality tools.  
+  By default it is equal to `./scripts/code-quality`.
+
+* `--git-hooks-dir=<dir>`  
+  Specify the location of the Git hooks directory.  
+  By default it is equal to `./.git/hooks`.
+
+* `--no-git`  
+  Use this option if don't use Git or if you don't want the pre-commit hook to be installed.
+
+Example :
 ```shell
-cd [my_project]
-cp scripts/code-quality/code-quality-pre-commit-hook.sh .git/hooks/pre-commit
+\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master --install-dir=/root/code-quality --no-git
 ```
-
 
 
 ## Running tests
@@ -74,3 +76,7 @@ Tests will automatically run when you commit if you have enabled the GIt hook, b
 ```shell
 grunt --gruntfile [my_project]/scripts/code-quality/Gruntfile.js
 ```
+
+[node]: https://nodejs.org/
+[grunt]: http://gruntjs.com/
+
