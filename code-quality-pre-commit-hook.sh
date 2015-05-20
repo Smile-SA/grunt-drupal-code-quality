@@ -18,7 +18,7 @@ GRUNT_BIN=`command -v grunt`
 
 
 # Begin Grunt hook
-$GRUNT_BIN --base PROJECT_DIR --gruntfile $INSTALL_DIR/Gruntfile.js
+$GRUNT_BIN --base $PROJECT_DIR --gruntfile $INSTALL_DIR/Gruntfile.js
 EXIT_CODE=$((${EXIT_CODE} + $?))
 
 

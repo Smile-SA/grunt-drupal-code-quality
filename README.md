@@ -84,7 +84,7 @@ Example :
 
 Tests will automatically run when you commit if you have enabled the GIt hook, but if you want to run them manually you can do the following :
 ```shell
-grunt --base src --gruntfile code-quality/Gruntfile.js
+grunt --base src --gruntfile scripts/code-quality/Gruntfile.js
 ```
 
 * `--base` : refer to your project directory you want to run code quality tools on.

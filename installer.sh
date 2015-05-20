@@ -122,7 +122,7 @@ rm -f $GIT_BRANCH.tar.gz
 
 # Create environment files containing data for hook.
 touch $INSTALL_DIR/env.cfg
-echo "PROJECT_DIR=$PROJECT_DIR" >> env.cfg
+echo "PROJECT_DIR=$PROJECT_DIR" >> $INSTALL_DIR/env.cfg
 
 # Install dependencies
 echo "Installing project dependencies."
