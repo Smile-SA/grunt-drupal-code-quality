@@ -44,7 +44,7 @@ npm install -g grunt-cli
 
 ### Using installer
 
-Installation command :
+The simplest way is to go into your project root directory, where the `.git` folder is located, and run the following command :
 ```shell
 \curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master
 ```
@@ -53,6 +53,10 @@ You can use an other branch or tag instead of using "master" :
 ```shell
 \curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.3
 ```
+
+By default the code quality tools will be installed in the following directory : `./scripts/code-quality`
+
+You can change this by appending options at the end of the command. See below for an explanation of available options. 
 
 
 ### Options
