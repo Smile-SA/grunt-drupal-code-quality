@@ -1,6 +1,7 @@
 {
   "require-dev": {
-    "squizlabs/php_codesniffer": "2.*",
-    "phpmd/phpmd" : "2.*"
+    "drupal/coder": "8.*",
+    "phpmd/phpmd": "2.*",
+    "squizlabs/php_codesniffer": "2.*"
   }
 }

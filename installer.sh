@@ -128,15 +128,18 @@ touch $INSTALL_DIR/env.cfg
 echo "PROJECT_DIR=$PROJECT_DIR" >> $INSTALL_DIR/env.cfg
 
 # Installing composer dependencies
-echo "Installing composer dependencies..."
 cd $INSTALL_DIR
 if [ -z $COMPOSER_BIN ]
 then
+    echo "Installing composer and dependencies..."
     curl -sS https://getcomposer.org/installer | php
     php composer.phar install
 else
+    echo "Installing composer dependencies..."
     $COMPOSER_BIN install
 fi
+CODER_DIR=`readlink -f ./vendor/drupal/coder/coder_sniffer`
+./vendor/bin/phpcs --config-set installed_paths $CODER_DIR
 cd -
 
 # Install dependencies
