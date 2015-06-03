@@ -10,12 +10,6 @@ module.exports = function(grunt) {
 
   /* Load configuration */
   grunt.initConfig({
-    eslint: {
-      options: {
-        config: '.eslintrc'
-      },
-      src: [projectDir + '/**/*.js', '!' + projectDir + '/**/*.min.js']
-    },
     csslint : {
       options : {
         csslintrc: '.csslintrc',
@@ -23,15 +17,29 @@ module.exports = function(grunt) {
       app : {
         src : [projectDir + '/**/*.css', '!' + projectDir + '/**/*.min.css']
       }
+    },
+    eslint: {
+      options: {
+        config: '.eslintrc'
+      },
+      src: [projectDir + '/**/*.js', '!' + projectDir + '/**/*.min.js']
+    },
+    phpcs {
+      src: [projectDir + '/**/*.php', projectDir + '/**/*.inc', projectDir + '/**/*.module', projectDir + '/**/*.install']
+    },
+    phpmd: {
+      src: [projectDir + '/**/*.php', projectDir + '/**/*.inc', projectDir + '/**/*.module', projectDir + '/**/*.install']
     }
   });
 
   /* Load all plugins */
   grunt.loadNpmTasks("grunt-contrib-csslint");
+  grunt.loadNpmTasks('grunt-phpcs');
+  grunt.loadNpmTasks('grunt-phpmd');
   grunt.loadNpmTasks("gruntify-eslint");
 
   /* Define tasks */
-  grunt.registerTask('check', ['eslint', 'csslint']);
+  grunt.registerTask('check', ['csslint', 'eslint', 'phpcs', 'phpmd']);
   grunt.registerTask('default', 'check');
 
   /* Help task */

@@ -124,8 +124,14 @@ rm -f $GIT_BRANCH.tar.gz
 touch $INSTALL_DIR/env.cfg
 echo "PROJECT_DIR=$PROJECT_DIR" >> $INSTALL_DIR/env.cfg
 
+# Installing composer dependencies
+echo "Installing composer dependencies..."
+cd $INSTALL_DIR
+php composer.phar install
+cd -
+
 # Install dependencies
-echo "Installing project dependencies."
+echo "Installing project dependencies..."
 cd $INSTALL_DIR
 npm install
 cd -

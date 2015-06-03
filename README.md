@@ -4,6 +4,12 @@
 
 Code quality tools for Drupal 8.
 
+This project provides the following tools for checking your code against the [Drupal coding standards][https://www.drupal.org/coding-standards] and other best practices :
+* PHP_CodeSniffer
+* PHP Mess Detector
+* ESLint
+* CSS Lint
+
 
 
 ## Prerequisites
@@ -13,6 +19,14 @@ Code quality tools for Drupal 8.
 Linux instructions (need sudo) :
 ```shell
 apt-get install curl
+```
+
+
+### [Installing composer][composer]
+
+Install composer :
+```shell
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
 ```
 
 
@@ -46,12 +60,12 @@ npm install -g grunt-cli
 
 The simplest way is to go into your project root directory, where the `.git` folder is located, and run the following command :
 ```shell
-\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master
 ```
 
 You can use an other branch or tag instead of using "master" :
 ```shell
-\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.3
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.3
 ```
 
 By default the code quality tools will be installed in the following directory : `./scripts/code-quality`
@@ -79,7 +93,7 @@ You can append options to the previous commands :
 
 Example :
 ```shell
-\curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master --project-dir=src
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master --project-dir=src
 ```
 
 
@@ -94,11 +108,14 @@ grunt --base src --gruntfile scripts/code-quality/Gruntfile.js
 * `--base` : refer to your project directory you want to run code quality tools on.
 * `--gruntfile` : refer to the Gruntfile.js file located in the code quality installation directory.
 
-[node]: https://nodejs.org/
-[grunt]: http://gruntjs.com/
-
 
 
 ## Release History
 
 See the [CHANGELOG.txt](https://github.com/tonai/code-quality/blob/master/CHANGELOG.txt)
+
+
+
+[composer]: https://getcomposer.org/download/
+[node]: https://nodejs.org/
+[grunt]: http://gruntjs.com/
