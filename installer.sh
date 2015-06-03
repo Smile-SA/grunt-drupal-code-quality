@@ -85,6 +85,9 @@ verlt() {
 
 ########## Check requirements ##########
 
+# Check composer.
+COMPOSER_BIN=`command -v composer.phar` || { ((EXIT_CODE++)); echo "composer was not found."; }
+
 # Check node.
 NODE_BIN=`command -v node` || { ((EXIT_CODE++)); echo "node was not found."; }
 if [ ! -z $NODE_BIN ]
