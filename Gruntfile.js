@@ -22,13 +22,26 @@ module.exports = function(grunt) {
       options: {
         config: '.eslintrc'
       },
-      src: [projectDir + '/**/*.js', '!' + projectDir + '/**/*.min.js']
+      app: {
+        src: [projectDir + '/**/*.js', '!' + projectDir + '/**/*.min.js']
+      }
     },
-    phpcs {
-      src: [projectDir + '/**/*.php', projectDir + '/**/*.inc', projectDir + '/**/*.module', projectDir + '/**/*.install']
+    phpcs: {
+      options: {
+        bin: './vendor/bin/phpcs',
+        standard: 'Drupal'
+      },
+      app: {
+        src: [projectDir + '/**/*.php', projectDir + '/**/*.inc', projectDir + '/**/*.module', projectDir + '/**/*.install']
+      }
     },
     phpmd: {
-      src: [projectDir + '/**/*.php', projectDir + '/**/*.inc', projectDir + '/**/*.module', projectDir + '/**/*.install']
+      options: {
+        bin: './vendor/bin/phpmd'
+      },
+      app: {
+        dir: projectDir
+      }
     }
   });
 
