@@ -4,7 +4,7 @@
 
 Code quality tools for Drupal 8.
 
-This project provides the following tools for checking your code against the [Drupal coding standards][https://www.drupal.org/coding-standards] and other best practices :
+This project provides the following tools for checking your code against the [Drupal coding standards](https://www.drupal.org/coding-standards) and other best practices :
 * PHP_CodeSniffer
 * PHP Mess Detector
 * ESLint
@@ -22,12 +22,14 @@ apt-get install curl
 ```
 
 
-### [Installing composer][composer]
+### [Composer][composer]
 
-Install composer :
+Install composer globally :
 ```shell
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 ```
+
+If not, the installer script will install composer locally within the code quality directory.
 
 
 ### [Node][node]

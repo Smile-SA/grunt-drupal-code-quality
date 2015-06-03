@@ -86,7 +86,7 @@ verlt() {
 ########## Check requirements ##########
 
 # Check composer.
-COMPOSER_BIN=`command -v composer.phar` || { ((EXIT_CODE++)); echo "composer was not found."; }
+COMPOSER_BIN=`command -v composer` || echo "composer was not found : it will be installed locally.";
 
 # Check node.
 NODE_BIN=`command -v node` || { ((EXIT_CODE++)); echo "node was not found."; }
@@ -130,7 +130,13 @@ echo "PROJECT_DIR=$PROJECT_DIR" >> $INSTALL_DIR/env.cfg
 # Installing composer dependencies
 echo "Installing composer dependencies..."
 cd $INSTALL_DIR
-php composer.phar install
+if [ -z $COMPOSER_BIN ]
+then
+    curl -sS https://getcomposer.org/installer | php
+    php composer.phar install
+else
+    $COMPOSER_BIN install
+fi
 cd -
 
 # Install dependencies
