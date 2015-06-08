@@ -28,7 +28,6 @@ Options :
 
 Actions :
   * help     - Displays this output.
-  * master   - Installs from the master branch (default).
   * <branch> - Installs from the given branch.
   * <tag>    - Installs from the given tag.
 
@@ -44,7 +43,7 @@ EXIT_CODE=0
 NODE_MIN_VERSION=0.8.0
 
 # Default variables initialization.
-GIT_BRANCH=master
+GIT_BRANCH=8.x-1.x
 PROJECT_DIR=.
 INSTALL_DIR=./scripts/code-quality
 GIT_HOOKS_DIR=./.git/hooks

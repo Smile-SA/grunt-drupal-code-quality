@@ -62,40 +62,40 @@ npm install -g grunt-cli
 
 The simplest way is to go into your project root directory, where the `.git` folder is located, and run the following command :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x
 ```
 
-You can use an other branch or tag instead of using "master" :
+You can use git tags instead of a branch name :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s v0.0.3
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s v0.8.0
 ```
 
 By default the code quality tools will be installed in the following directory : `./scripts/code-quality`
 
-You can change this by appending options at the end of the command. See below for an explanation of available options. 
+You can change this by appending options at the end of the command. See below for an explanation of available options.
 
 
 ### Options
 
 You can append options to the previous commands :
-* `--project-dir=<dir>`  
-  Specify the location of the project used for running quality tools.  
+* `--project-dir=<dir>`
+  Specify the location of the project used for running quality tools.
   By default it is equal to the current directory when launching the installation.
-    
-* `--install-dir=<dir>`  
-  Specify the installation directory of the code quality tools.  
+
+* `--install-dir=<dir>`
+  Specify the installation directory of the code quality tools.
   By default it is equal to `./scripts/code-quality`.
 
-* `--git-hooks-dir=<dir>`  
-  Specify the location of the Git hooks directory.  
+* `--git-hooks-dir=<dir>`
+  Specify the location of the Git hooks directory.
   By default it is equal to `./.git/hooks`.
 
-* `--no-git`  
+* `--no-git`
   Use this option if don't use Git or if you don't want the pre-commit hook to be installed.
 
 Example :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/master/installer.sh | bash -s master --project-dir=src
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x --project-dir=src
 ```
 
 
@@ -114,7 +114,7 @@ grunt --base src --gruntfile scripts/code-quality/Gruntfile.js
 
 ## Release History
 
-See the [CHANGELOG.txt](https://github.com/tonai/code-quality/blob/master/CHANGELOG.txt)
+See the [CHANGELOG.txt](https://github.com/tonai/code-quality/blob/8.x-1.x/CHANGELOG.txt)
 
 
 
