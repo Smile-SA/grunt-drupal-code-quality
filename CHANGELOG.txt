@@ -1,3 +1,8 @@
+v8.0.1
+  date: 2015-06-08
+  changes:
+    - Add PHPCS and PHPMD for Drupal 8.
+
 v0.0.3 :
   date: 2015-05-20
   changes:
