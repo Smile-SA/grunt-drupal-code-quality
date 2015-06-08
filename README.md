@@ -69,7 +69,7 @@ curl -sSL http://cdn.rawgit.com/tonai/code-quality/7.x-1.x/installer.sh | bash -
 
 You can use git tags instead of a branch name :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/7.x-1.x/installer.sh | bash -s v0.7.0
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/7.x-1.x/installer.sh | bash -s v7.0.1
 ```
 
 By default the code quality tools will be installed in the following directory : `./scripts/code-quality`
