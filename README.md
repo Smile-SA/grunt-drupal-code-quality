@@ -2,7 +2,7 @@
 
 ## Description
 
-Code quality tools for Drupal 8.
+Code quality tools for Drupal 7.
 
 This project provides the following tools for checking your code against the [Drupal coding standards](https://www.drupal.org/coding-standards) and other best practices :
 * PHP_CodeSniffer
