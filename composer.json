@@ -1,6 +1,6 @@
 {
   "require-dev": {
-    "drupal/coder": "8.*",
+    "drupal/coder": "7.*",
     "phpmd/phpmd": "2.*",
     "squizlabs/php_codesniffer": "2.*"
   }

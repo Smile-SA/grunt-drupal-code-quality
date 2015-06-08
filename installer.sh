@@ -43,7 +43,7 @@ EXIT_CODE=0
 NODE_MIN_VERSION=0.8.0
 
 # Default variables initialization.
-GIT_BRANCH=8.x-1.x
+GIT_BRANCH=7.x-1.x
 PROJECT_DIR=.
 INSTALL_DIR=./scripts/code-quality
 GIT_HOOKS_DIR=./.git/hooks

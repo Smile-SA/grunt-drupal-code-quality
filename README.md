@@ -62,12 +62,12 @@ npm install -g grunt-cli
 
 The simplest way is to go into your project root directory, where the `.git` folder is located, and run the following command :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/7.x-1.x/installer.sh | bash -s 7.x-1.x
 ```
 
 You can use git tags instead of a branch name :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s v0.8.0
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/7.x-1.x/installer.sh | bash -s v0.8.0
 ```
 
 By default the code quality tools will be installed in the following directory : `./scripts/code-quality`
@@ -95,7 +95,7 @@ You can append options to the previous commands :
 
 Example :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x --project-dir=src
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/7.x-1.x/installer.sh | bash -s 7.x-1.x --project-dir=src
 ```
 
 
@@ -114,7 +114,7 @@ grunt --base src --gruntfile scripts/code-quality/Gruntfile.js
 
 ## Release History
 
-See the [CHANGELOG.txt](https://github.com/tonai/code-quality/blob/8.x-1.x/CHANGELOG.txt)
+See the [CHANGELOG.txt](https://github.com/tonai/code-quality/blob/7.x-1.x/CHANGELOG.txt)
 
 
 
