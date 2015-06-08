@@ -15,7 +15,10 @@ module.exports = function(grunt) {
         csslintrc: '.csslintrc',
       },
       app : {
-        src : [projectDir + '/**/*.css', '!' + projectDir + '/**/*.min.css']
+        src : [
+          projectDir + '/**/*.css',
+          '!' + projectDir + '/**/*.min.css'
+        ]
       }
     },
     eslint: {
@@ -23,21 +26,32 @@ module.exports = function(grunt) {
         config: '.eslintrc'
       },
       app: {
-        src: [projectDir + '/**/*.js', '!' + projectDir + '/**/*.min.js']
+        src: [
+          projectDir + '/**/*.js',
+          '!' + projectDir + '/**/*.min.js'
+        ]
       }
     },
     phpcs: {
       options: {
         bin: './vendor/bin/phpcs',
-        standard: 'Drupal'
+        standard: 'Drupal',
+        warningSeverity: 0
       },
       app: {
-        src: [projectDir + '/**/*.php', projectDir + '/**/*.inc', projectDir + '/**/*.module', projectDir + '/**/*.install']
+        src: [
+          projectDir + '/**/*.php',
+          projectDir + '/**/*.inc',
+          projectDir + '/**/*.module',
+          projectDir + '/**/*.install'
+        ]
       }
     },
     phpmd: {
       options: {
-        bin: './vendor/bin/phpmd'
+        bin: './vendor/bin/phpmd',
+        reportFormat: 'text',
+        rulesets: 'codesize,unusedcode'
       },
       app: {
         dir: projectDir
@@ -63,8 +77,10 @@ module.exports = function(grunt) {
       grunt.log.writeln('');
       grunt.log.writeln('Availables commands :');
       grunt.log.writeln('');
-      grunt.log.writeln('* grunt eslint  : run eslint task (JavaScript validation)');
-      grunt.log.writeln('* grunt csslint : run csslint tasks (CSS validation)');
+      grunt.log.writeln('* grunt csslint : run csslint tasks (CSS coding standards)');
+      grunt.log.writeln('* grunt eslint  : run eslint task (JavaScript coding standards)');
+      grunt.log.writeln('* grunt phpcs   : run phpcs task (PHP coding standards)');
+      grunt.log.writeln('* grunt phpmd   : run phpmd tasks (PHP mess detector)');
       grunt.log.writeln('* grunt check   : run both');
       grunt.log.writeln('* grunt         : same as check');
     }

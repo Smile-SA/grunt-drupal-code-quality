@@ -49,6 +49,8 @@ ln -s /root/node-v0.12.3-linux-x64/bin/npm /usr/bin/npm
 
 ### [Grunt][grunt]
 
+grunt-cli >= `0.1.12` is required.
+
 Linux instructions (need sudo) :
 ```shell
 npm install -g grunt-cli
@@ -67,7 +69,7 @@ curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -
 
 You can use git tags instead of a branch name :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s v0.8.0
+curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s v8.0.1
 ```
 
 By default the code quality tools will be installed in the following directory : `./scripts/code-quality`

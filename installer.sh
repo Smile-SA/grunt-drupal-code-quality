@@ -41,6 +41,7 @@ Actions :
 # Base variables.
 EXIT_CODE=0
 NODE_MIN_VERSION=0.8.0
+GRUNT_MIN_VERSION=0.1.12
 
 # Default variables initialization.
 GIT_BRANCH=8.x-1.x
@@ -98,6 +99,12 @@ fi
 
 # Check grunt.
 GRUNT_BIN=`command -v grunt` || { ((EXIT_CODE++)); echo "grunt was not found."; }
+if [ ! -z $GRUNT_BIN ]
+then
+    # Check version.
+    GRUNT_VERSION=`$GRUNT_BIN --version | cut -c12-`
+    verlte $GRUNT_MIN_VERSION $GRUNT_VERSION || { ((EXIT_CODE++)); echo "grunt-cli version >= $GRUNT_MIN_VERSION is required."; }
+fi
 
 # Exits if problems were detected.
 test $EXIT_CODE -gt 0 && { echo "Aborting."; exit ${EXIT_CODE}; }
