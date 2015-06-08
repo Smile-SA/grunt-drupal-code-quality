@@ -49,6 +49,8 @@ ln -s /root/node-v0.12.3-linux-x64/bin/npm /usr/bin/npm
 
 ### [Grunt][grunt]
 
+grunt-cli >= `0.1.12` is required.
+
 Linux instructions (need sudo) :
 ```shell
 npm install -g grunt-cli
