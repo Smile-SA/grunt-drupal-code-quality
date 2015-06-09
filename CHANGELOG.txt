@@ -1,3 +1,13 @@
+v7.0.3
+  date: 2015-06-09
+  changes:
+    - Ignore exported views.
+    - Add phpmd wrapping task for better grunt files notation compatibility.
+    - Gruntfile correction.
+    - package.json correction.
+    - Git hook correction.
+    - Update README.md
+
 v7.0.2
   date: 2015-06-09
   changes:
