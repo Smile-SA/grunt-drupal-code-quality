@@ -17,8 +17,8 @@ GRUNT_BIN=`command -v grunt`
 # Begin Grunt hook
 cd $INSTALL_DIR
 $GRUNT_BIN checkCommit
-cd -
 EXIT_CODE=$((${EXIT_CODE} + $?))
+cd -
 
 
 
