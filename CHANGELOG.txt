@@ -1,3 +1,9 @@
+v8.0.2
+  date: 2015-06-09
+  changes:
+    - Modification of pre-commit hook : process only files that will be commited.
+    - Add LICENCE file and update package.json
+
 v8.0.1
   date: 2015-06-08
   changes:

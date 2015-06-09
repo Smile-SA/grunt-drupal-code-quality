@@ -1,7 +1,7 @@
 {
   "name": "code-quality",
   "description": "Code quality tools for Drupal 8.",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "homepage": "https://github.com/tonai/Code-quality",
   "author": {
     "name": "Tony Cabaye",
