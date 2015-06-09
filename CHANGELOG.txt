@@ -1,3 +1,11 @@
+v8.0.3
+  date: 2015-06-09
+  changes:
+    - Add phpmd wrapping task for better grunt files notation compatibility.
+    - package.json correction.
+    - Git hook correction.
+    - Update README.md
+
 v8.0.2
   date: 2015-06-09
   changes:
