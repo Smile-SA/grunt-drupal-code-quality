@@ -41,7 +41,8 @@ module.exports = function(grunt) {
           env.projectDir + '/**/*.module',
           env.projectDir + '/**/*.install',
           '!' + env.projectDir + '/**/*.features*.inc',
-          '!' + env.projectDir + '/**/*.field_group.inc'
+          '!' + env.projectDir + '/**/*.field_group.inc',
+          '!' + env.projectDir + '/**/*.views_default.inc
         ]
       }
     },
@@ -50,7 +51,7 @@ module.exports = function(grunt) {
         bin: './vendor/bin/phpmd',
         reportFormat: 'text',
         rulesets: 'codesize,unusedcode',
-        exclude: '*.features*.inc,*.field_group.inc'
+        exclude: '*.features*.inc,*.field_group.inc,*.views_default.inc'
       },
       app: {
         dir: env.projectDir
