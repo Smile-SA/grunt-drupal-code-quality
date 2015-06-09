@@ -1,8 +1,33 @@
 {
   "name": "code-quality",
-  "version": "7.0.1",
   "description": "Code quality tools for Drupal 7.",
+  "version": "7.0.1",
+  "homepage": "https://github.com/tonai/Code-quality",
+  "author": {
+    "name": "Tony Cabaye",
+    "email": "tonai59+github@gmail.com",
+    "url": "https://github.com/tonai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonai/Code-quality.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tonai/Code-quality/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/tonai/Code-quality/blob/master/LICENSE"
+    }
+  ],
   "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -12,11 +37,5 @@
     "grunt-phpmd": "^0.1.1",
     "gruntify-eslint": "^0.1.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "git@git.smile.fr:drupal/code-quality.git",
-  "author": "tocab",
-  "license": "BSD",
   "readmeFilename": "README.md"
 }
