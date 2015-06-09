@@ -105,6 +105,38 @@ curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -
 ```
 
 
+### Manual installation
+
+Download and extract this repository in the folder you want (usually a subfolder in your own Git project).
+
+Go inside the extracted directory and install dependencies :
+```shell
+npm install
+composer install
+```
+
+Install PHPCS profile :
+```shell
+./vendor/bin/phpcs --config-set installed_paths `readlink -f ./vendor/drupal/coder/coder_sniffer`
+```
+
+Then create a file named `env.json` containing the following absolute paths :
+* projectDir : absolute path to the directory containing the sources you want to lint
+* workTree : absolute path to your project Git working tree
+* gitDir : absolute path to your project `.git` directory
+
+Example :
+```json
+{
+  "projectDir":"/home/me/my_project/src",
+  "workTree":"/home/me/my_project",
+  "gitDir":"/home/me/my_project/.git"
+}
+```
+
+Finally install the Git hook by copying the file named `code-quality-pre-commit-hook.sh` in the `.git/hooks/` directory and rename that file `pre-commit`.
+
+
 
 ## Running tests
 
