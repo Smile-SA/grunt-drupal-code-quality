@@ -2,11 +2,7 @@
 
 module.exports = function(grunt) {
   var path = require('path');
-  var installDir = __dirname;
-  var projectDir = path.resolve('.');
-
-  /* Reset grunt base path */
-  grunt.file.setBase(installDir);
+  var env = grunt.file.readJSON('env.json');
 
   /* Load configuration */
   grunt.initConfig({
@@ -16,8 +12,8 @@ module.exports = function(grunt) {
       },
       app : {
         src : [
-          projectDir + '/**/*.css',
-          '!' + projectDir + '/**/*.min.css'
+          env.projectDir + '/**/*.css',
+          '!' + env.projectDir + '/**/*.min.css'
         ]
       }
     },
@@ -27,8 +23,8 @@ module.exports = function(grunt) {
       },
       app: {
         src: [
-          projectDir + '/**/*.js',
-          '!' + projectDir + '/**/*.min.js'
+          env.projectDir + '/**/*.js',
+          '!' + env.projectDir + '/**/*.min.js'
         ]
       }
     },
@@ -40,12 +36,12 @@ module.exports = function(grunt) {
       },
       app: {
         src: [
-          projectDir + '/**/*.php',
-          projectDir + '/**/*.inc',
-          projectDir + '/**/*.module',
-          projectDir + '/**/*.install',
-          '!' + projectDir + '/**/*.features*.inc',
-          '!' + projectDir + '/**/*.field_group.inc'
+          env.projectDir + '/**/*.php',
+          env.projectDir + '/**/*.inc',
+          env.projectDir + '/**/*.module',
+          env.projectDir + '/**/*.install',
+          '!' + env.projectDir + '/**/*.features*.inc',
+          '!' + env.projectDir + '/**/*.field_group.inc'
         ]
       }
     },
@@ -57,19 +53,34 @@ module.exports = function(grunt) {
         exclude: '*.features*.inc,*.field_group.inc'
       },
       app: {
-        dir: projectDir
+        dir: env.projectDir
+      }
+    },
+    gitIndexFiles: {
+      app: {
+        options: {
+          gitDir: env.gitDir,
+          workTree: env.workTree,
+          configSrcPath : [
+            'csslint.app.src',
+            'eslint.app.src',
+            'phpcs.app.src'
+          ]
+        }
       }
     }
   });
 
   /* Load all plugins */
-  grunt.loadNpmTasks("grunt-contrib-csslint");
+  grunt.loadNpmTasks('grunt-contrib-csslint');
+  grunt.loadNpmTasks('grunt-git-index-files');
   grunt.loadNpmTasks('grunt-phpcs');
   grunt.loadNpmTasks('grunt-phpmd');
-  grunt.loadNpmTasks("gruntify-eslint");
+  grunt.loadNpmTasks('gruntify-eslint');
 
   /* Define tasks */
   grunt.registerTask('check', ['csslint', 'eslint', 'phpcs', 'phpmd']);
+  grunt.registerTask('checkCommit', ['gitIndexFiles', 'check']);
   grunt.registerTask('default', 'check');
 
   /* Help task */
@@ -80,12 +91,14 @@ module.exports = function(grunt) {
       grunt.log.writeln('');
       grunt.log.writeln('Availables commands :');
       grunt.log.writeln('');
-      grunt.log.writeln('* grunt csslint : run csslint tasks (CSS coding standards)');
-      grunt.log.writeln('* grunt eslint  : run eslint task (JavaScript coding standards)');
-      grunt.log.writeln('* grunt phpcs   : run phpcs task (PHP coding standards)');
-      grunt.log.writeln('* grunt phpmd   : run phpmd tasks (PHP mess detector)');
-      grunt.log.writeln('* grunt check   : run both');
-      grunt.log.writeln('* grunt         : same as check');
+      grunt.log.writeln('* grunt csslint       : run csslint tasks (CSS coding standards).');
+      grunt.log.writeln('* grunt eslint        : run eslint task (JavaScript coding standards).');
+      grunt.log.writeln('* grunt phpcs         : run phpcs task (PHP coding standards).');
+      grunt.log.writeln('* grunt phpmd         : run phpmd tasks (PHP mess detector).');
+      grunt.log.writeln('* grunt check         : run all above.');
+      grunt.log.writeln('* grunt gitIndexFiles : modify the files set of other task for limiting to git index files only.');
+      grunt.log.writeln('* grunt checkCommit   : launch the check task just after the gitIndexFiles task.');
+      grunt.log.writeln('* grunt               : same as check');
     }
   );
 };

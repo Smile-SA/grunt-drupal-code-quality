@@ -9,19 +9,25 @@ Usage :
 
 Options :
   --project-dir=<dir>
-    Specify the location of the project used for running quality tools.
-    By default it is equal to the current directory when launching the installation.
-    Example : --project-dir=src
+    Specify the location of the sources you want to run the quality tools on.
+    By default it is equal to the current directory when launching the installation ('.').
+    Example : --project-dir=src/drupal
 
   --install-dir=<dir>
     Specify the installation directory of the code quality tools.
     By default it is equal to './scripts/code-quality'.
     Example : --install-dir=/root/code-quality
 
-  --git-hooks-dir=<dir>
-    Specify the location of the Git hooks directory.
-    By default it is equal to './.git/hooks'.
-    Example : --git-hooks-dir=my_project/.git/hooks
+  --work-tree=<dir>
+    Specify the location of the Git working tree.
+    By default it is equal to the current directory when launching the installation ('.').
+    Example : --work-tree=my_project
+
+  --git-dir=<dir>
+    Specify the location of the Git directory.
+    By default it is equal to './.git'.
+    Example : --git-dir=my_project/.git
+
 
   --no-git
     Use this option if don't use Git or if you don't want the pre-commit hook to be installed.
@@ -47,7 +53,8 @@ GRUNT_MIN_VERSION=0.1.12
 GIT_BRANCH=7.x-1.x
 PROJECT_DIR=.
 INSTALL_DIR=./scripts/code-quality
-GIT_HOOKS_DIR=./.git/hooks
+WORK_TREE=.
+GIT_DIR=./.git
 INSTALL_GIT_HOOK=1
 
 # Retrieve options.
@@ -60,8 +67,10 @@ do
             PROJECT_DIR=$(echo $VAR | cut -d "=" -f 2);;
         --install-dir* )
             INSTALL_DIR=$(echo $VAR | cut -d "=" -f 2);;
-        --git-hooks-dir* )
-            GIT_HOOKS_DIR=$(echo $VAR | cut -d "=" -f 2);;
+        --work-tree* )
+            WORK_TREE=$(echo $VAR | cut -d "=" -f 2);;
+        --git-dir* )
+            GIT_DIR=$(echo $VAR | cut -d "=" -f 2);;
         help )
             usage; exit 0;;
         * )
@@ -119,7 +128,8 @@ mkdir -p $INSTALL_DIR
 # Transform relative path to absolute path.
 PROJECT_DIR=`readlink -f $PROJECT_DIR`
 INSTALL_DIR=`readlink -f $INSTALL_DIR`
-GIT_HOOKS_DIR=`readlink -f $GIT_HOOKS_DIR`
+WORK_TREE=`readlink -f $WORK_TREE`
+GIT_DIR=`readlink -f $GIT_DIR`
 
 # Download and extract archive.
 echo "Downloading archive."
@@ -129,9 +139,13 @@ find Code-quality-$GIT_BRANCH -maxdepth 1 -mindepth 1 -type f -exec mv {} $INSTA
 rmdir Code-quality-$GIT_BRANCH
 rm -f $GIT_BRANCH.tar.gz
 
-# Create environment files containing data for hook.
-touch $INSTALL_DIR/env.cfg
-echo "PROJECT_DIR=$PROJECT_DIR" >> $INSTALL_DIR/env.cfg
+# Create grunt json file containing environment data.
+touch $INSTALL_DIR/env.json
+echo "{" >> $INSTALL_DIR/env.json
+echo "\"projectDir\":\"$PROJECT_DIR\"," >> $INSTALL_DIR/env.json
+echo "\"workTree\":\"$WORK_TREE\"," >> $INSTALL_DIR/env.json
+echo "\"gitDir\":\"$GIT_DIR\"" >> $INSTALL_DIR/env.json
+echo "}" >> $INSTALL_DIR/env.json
 
 # Installing composer dependencies
 cd $INSTALL_DIR
@@ -157,7 +171,7 @@ cd -
 # Install GIT pre-commit hook.
 if [ $INSTALL_GIT_HOOK -eq 1 ]
 then
-    ln -s $INSTALL_DIR/code-quality-pre-commit-hook.sh $GIT_HOOKS_DIR/pre-commit
+    ln -s $INSTALL_DIR/code-quality-pre-commit-hook.sh $GIT_DIR/hooks/pre-commit
 fi
 
 echo "Done."

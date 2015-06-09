@@ -82,15 +82,19 @@ You can change this by appending options at the end of the command. See below fo
 You can append options to the previous commands :
 * `--project-dir=<dir>`
   Specify the location of the project used for running quality tools.
-  By default it is equal to the current directory when launching the installation.
+  By default it is equal to the current directory when launching the installation (`.`).
 
 * `--install-dir=<dir>`
   Specify the installation directory of the code quality tools.
   By default it is equal to `./scripts/code-quality`.
+  
+* `--work-tree=<dir>`
+  Specify the location of the Git working tree.
+  By default it is equal to the current directory when launching the installation (`.`).
 
-* `--git-hooks-dir=<dir>`
-  Specify the location of the Git hooks directory.
-  By default it is equal to `./.git/hooks`.
+* `--git-dir=<dir>`
+  Specify the location of the Git directory.
+  By default it is equal to `./.git`.
 
 * `--no-git`
   Use this option if don't use Git or if you don't want the pre-commit hook to be installed.
