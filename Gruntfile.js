@@ -1,33 +1,49 @@
 'use strict';
 
 module.exports = function(grunt) {
+  var cssFiles, jsFiles, phpFiles;
   var path = require('path');
   var env = grunt.file.readJSON('env.json');
 
+  cssFiles = [
+    env.projectDir + '/**/*.css',
+    '!' + env.projectDir + '/**/*.min.css'
+  ];
+  jsFiles = [
+    env.projectDir + '/**/*.js',
+    '!' + env.projectDir + '/**/*.min.js'
+  ];
+  phpFiles = [
+    env.projectDir + '/**/*.php',
+    env.projectDir + '/**/*.inc',
+    env.projectDir + '/**/*.module',
+    env.projectDir + '/**/*.install'
+  ];
+
   /* Load configuration */
   grunt.initConfig({
+
+    // CSS related tasks.
     csslint : {
       options : {
         csslintrc: '.csslintrc',
       },
       app : {
-        src : [
-          env.projectDir + '/**/*.css',
-          '!' + env.projectDir + '/**/*.min.css'
-        ]
+        src : cssFiles
       }
     },
+
+    // JS related tasks.
     eslint: {
       options: {
         config: '.eslintrc'
       },
       app: {
-        src: [
-          env.projectDir + '/**/*.js',
-          '!' + env.projectDir + '/**/*.min.js'
-        ]
+        src: jsFiles
       }
     },
+
+    // PHP related tasks.
     phpcs: {
       options: {
         bin: './vendor/bin/phpcs',
@@ -35,12 +51,7 @@ module.exports = function(grunt) {
         warningSeverity: 0
       },
       app: {
-        src: [
-          env.projectDir + '/**/*.php',
-          env.projectDir + '/**/*.inc',
-          env.projectDir + '/**/*.module',
-          env.projectDir + '/**/*.install'
-        ]
+        src: phpFiles
       }
     },
     phpmd: {
@@ -53,6 +64,13 @@ module.exports = function(grunt) {
         dir: env.projectDir
       }
     },
+    phpmdFiles: {
+      app: {
+        src: phpFiles
+      }
+    },
+
+    // Git related tasks.
     gitIndexFiles: {
       app: {
         options: {
@@ -61,12 +79,30 @@ module.exports = function(grunt) {
           configSrcPath : [
             'csslint.app.src',
             'eslint.app.src',
-            'phpcs.app.src'
+            'phpcs.app.src',
+            'phpmdFiles.app.src'
           ]
         }
       }
     }
+
   });
+
+  // Because phpmd plugin is not compatible with the standard grunt files notation : http://gruntjs.com/configuring-tasks#files
+  // We use this wrapping task to iterate over the files and launch one phpmd process for each one.
+  grunt.registerMultiTask(
+    'phpmdFiles',
+    'Custom phpmd wrapping task.',
+    function() {
+      var taskList = [];
+      this.filesSrc.forEach(function(file, i){
+        var target = 'virtualTask' + i;
+        taskList.push('phpmd:' +target);
+        grunt.config.set('phpmd.' + target, {dir: file});
+      });
+      grunt.task.run(taskList);
+    }
+  );
 
   /* Load all plugins */
   grunt.loadNpmTasks('grunt-contrib-csslint');
@@ -77,11 +113,11 @@ module.exports = function(grunt) {
 
   /* Define tasks */
   grunt.registerTask('check', ['csslint', 'eslint', 'phpcs', 'phpmd']);
-  grunt.registerTask('checkCommit', ['gitIndexFiles', 'check']);
+  grunt.registerTask('checkCommit', ['gitIndexFiles', 'csslint', 'eslint', 'phpcs', 'phpmdFiles']);
   grunt.registerTask('default', 'check');
 
   /* Help task */
-  grunt.task.registerTask(
+  grunt.registerTask(
     'help',
     'Help task.',
     function() {
