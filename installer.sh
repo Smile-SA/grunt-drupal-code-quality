@@ -28,7 +28,6 @@ Options :
     By default it is equal to './.git'.
     Example : --git-dir=my_project/.git
 
-
   --no-git
     Use this option if don't use Git or if you don't want the pre-commit hook to be installed.
 

@@ -87,7 +87,7 @@ You can append options to the previous commands :
 * `--install-dir=<dir>`
   Specify the installation directory of the code quality tools.
   By default it is equal to `./scripts/code-quality`.
-  
+
 * `--work-tree=<dir>`
   Specify the location of the Git working tree.
   By default it is equal to the current directory when launching the installation (`.`).
