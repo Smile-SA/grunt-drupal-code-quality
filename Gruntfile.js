@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     env.projectDir + '/**/*.install',
     '!' + env.projectDir + '/**/*.features*.inc',
     '!' + env.projectDir + '/**/*.field_group.inc',
-    '!' + env.projectDir + '/**/*.views_default.inc
+    '!' + env.projectDir + '/**/*.views_default.inc'
   ];
 
   /* Load configuration */
