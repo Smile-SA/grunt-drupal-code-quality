@@ -1,4 +1,4 @@
-# Code quality
+# grunt-drupal-code-quality
 
 ## Description
 
@@ -141,7 +141,7 @@ Finally install the Git hook by copying the file named `code-quality-pre-commit-
 ## Running tests
 
 Tests will automatically run when you commit if you have enabled the Git hook.  
-But if you want to run them manually you can go into the directory where you have installed the code quality tool and run the following command :
+But if you want to run them manually you can go into the directory where you have installed the code quality tools and run the following command :
 ```shell
 grunt check
 ```
