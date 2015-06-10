@@ -132,15 +132,15 @@ GIT_DIR=`readlink -f $GIT_DIR`
 
 # Download and extract archive.
 echo "Downloading archive."
-wget https://github.com/tonai/code-quality/archive/$GIT_BRANCH.tar.gz || { echo "Given tag or branch does not exist."; exit 1; }
+wget https://github.com/Smile-SA/grunt-drupal-code-quality/archive/$GIT_BRANCH.tar.gz || { echo "Given tag or branch does not exist."; exit 1; }
 tar -xf $GIT_BRANCH.tar.gz
 rm -f $GIT_BRANCH.tar.gz
 if [[ ${GIT_BRANCH:0:1} == "v" ]]
 then
     GIT_BRANCH=${GIT_BRANCH:1}
 fi
-find Code-quality-$GIT_BRANCH -maxdepth 1 -mindepth 1 -type f -exec mv {} $INSTALL_DIR \;
-rmdir Code-quality-$GIT_BRANCH
+find grunt-drupal-code-quality-$GIT_BRANCH -maxdepth 1 -mindepth 1 -type f -exec mv {} $INSTALL_DIR \;
+rmdir grunt-drupal-code-quality-$GIT_BRANCH
 
 # Create grunt json file containing environment data.
 touch $INSTALL_DIR/env.json
