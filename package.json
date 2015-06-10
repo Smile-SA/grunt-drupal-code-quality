@@ -1,5 +1,5 @@
 {
-  "name": "code-quality",
+  "name": "grunt-drupal-code-quality",
   "version": "8.0.3",
   "description": "Code quality tools for Drupal 8.",
   "author": "Tony Cabaye <tonai59+github@gmail.com>",
@@ -10,10 +10,10 @@
   "main": "Gruntfile.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tonai/Code-quality.git"
+    "url": "https://github.com/Smile-SA/grunt-drupal-code-quality.git"
   },
   "bugs": {
-    "url": "https://github.com/tonai/Code-quality/issues"
+    "url": "https://github.com/Smile-SA/grunt-drupal-code-quality/issues"
   },
   "keywords": [
     "grunt",

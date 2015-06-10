@@ -64,12 +64,12 @@ npm install -g grunt-cli
 
 The simplest way is to go into your project root directory, where the `.git` folder is located, and run the following command :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x
+curl -sSL http://cdn.rawgit.com/Smile-SA/grunt-drupal-code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x
 ```
 
 You can use git tags instead of a branch name :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s v8.0.1
+curl -sSL http://cdn.rawgit.com/Smile-SA/grunt-drupal-code-quality/8.x-1.x/installer.sh | bash -s v8.0.1
 ```
 
 By default the code quality tools will be installed in the following directory : `./scripts/code-quality`
@@ -101,7 +101,7 @@ You can append options to the previous commands :
 
 Example :
 ```shell
-curl -sSL http://cdn.rawgit.com/tonai/code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x --project-dir=src
+curl -sSL http://cdn.rawgit.com/Smile-SA/grunt-drupal-code-quality/8.x-1.x/installer.sh | bash -s 8.x-1.x --project-dir=src
 ```
 
 
@@ -140,19 +140,17 @@ Finally install the Git hook by copying the file named `code-quality-pre-commit-
 
 ## Running tests
 
-Tests will automatically run when you commit if you have enabled the GIt hook, but if you want to run them manually you can do the following :
+Tests will automatically run when you commit if you have enabled the Git hook.  
+But if you want to run them manually you can go into the directory where you have installed the code quality tool and run the following command :
 ```shell
-grunt --base src --gruntfile scripts/code-quality/Gruntfile.js
+grunt check
 ```
-
-* `--base` : refer to your project directory you want to run code quality tools on.
-* `--gruntfile` : refer to the Gruntfile.js file located in the code quality installation directory.
 
 
 
 ## Release History
 
-See the [CHANGELOG.txt](https://github.com/tonai/code-quality/blob/8.x-1.x/CHANGELOG.txt)
+See the [CHANGELOG.txt](https://github.com/Smile-SA/grunt-drupal-code-quality/blob/8.x-1.x/CHANGELOG.txt)
 
 
 
