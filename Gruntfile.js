@@ -57,6 +57,11 @@ module.exports = function(grunt) {
         src: phpFiles
       }
     },
+    phpcsFiles: {
+      app: {
+        src: phpFiles
+      }
+    },
     phpmd: {
       options: {
         bin: './vendor/bin/phpmd',
@@ -84,6 +89,7 @@ module.exports = function(grunt) {
             'csslint.app.src',
             'eslint.app.src',
             'phpcs.app.src',
+            'phpcsFiles.app.src',
             'phpmdFiles.app.src'
           ]
         }
@@ -91,6 +97,18 @@ module.exports = function(grunt) {
     }
 
   });
+
+  // Because phpcs think it's an error not to have to files to check, we don't launch the task in this case.
+  // Pull request has been made to fix this error in the grunt-phpcs module : https://github.com/SaschaGalley/grunt-phpcs/pull/45
+  grunt.registerMultiTask(
+    'phpcsFiles',
+    'Custom phpcs wrapping task.',
+    function() {
+      if (this.filesSrc.length > 0) {
+        grunt.task.run('phpcs');
+      }
+    }
+  );
 
   // Because phpmd plugin is not compatible with the standard grunt files notation : http://gruntjs.com/configuring-tasks#files
   // We use this wrapping task to iterate over the files and launch one phpmd process for each one.
@@ -117,7 +135,7 @@ module.exports = function(grunt) {
 
   /* Define tasks */
   grunt.registerTask('check', ['csslint', 'eslint', 'phpcs', 'phpmd']);
-  grunt.registerTask('checkCommit', ['gitIndexFiles', 'csslint', 'eslint', 'phpcs', 'phpmdFiles']);
+  grunt.registerTask('checkCommit', ['gitIndexFiles', 'csslint', 'eslint', 'phpcsFiles', 'phpmdFiles']);
   grunt.registerTask('default', 'check');
 
   /* Help task */
