@@ -1,6 +1,7 @@
 v8.0.4
   date: 2015-06-25
   changes:
+    - .eslintrc file correction.
     - Add phpcs wrapping task for getting around an error un grunt-phpcs module.
 
 v8.0.3
