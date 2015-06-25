@@ -1,3 +1,8 @@
+v7.0.4
+  date: 2015-06-25
+  changes:
+    - Add phpcs wrapping task for getting around an error un grunt-phpcs module.
+
 v7.0.3
   date: 2015-06-09
   changes:
