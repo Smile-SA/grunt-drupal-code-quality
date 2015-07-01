@@ -144,7 +144,7 @@ rmdir grunt-drupal-code-quality-$GIT_BRANCH
 
 # Create grunt json file containing environment data.
 touch $INSTALL_DIR/env.json
-echo "{" >> $INSTALL_DIR/env.json
+echo "{" > $INSTALL_DIR/env.json
 echo "\"projectDir\":\"$PROJECT_DIR\"," >> $INSTALL_DIR/env.json
 echo "\"workTree\":\"$WORK_TREE\"," >> $INSTALL_DIR/env.json
 echo "\"gitDir\":\"$GIT_DIR\"" >> $INSTALL_DIR/env.json
