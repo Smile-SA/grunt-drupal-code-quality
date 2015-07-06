@@ -68,7 +68,7 @@ module.exports = function(grunt) {
         bin: './vendor/bin/phpmd',
         reportFormat: 'text',
         rulesets: 'codesize,unusedcode',
-        exclude: '*.features*.inc,*.field_group.inc,*.views_default.inc'
+        exclude: '*.features*.inc,*.field_group.inc,*.views_default.inc,*.strongarm.inc'
       },
       app: {
         dir: env.projectDir
