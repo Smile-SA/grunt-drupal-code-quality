@@ -7,11 +7,15 @@ module.exports = function(grunt) {
 
   cssFiles = [
     env.projectDir + '/**/*.css',
-    '!' + env.projectDir + '/**/*.min.css'
+    '!' + env.projectDir + '/**/*.min.css',
+    '!' + env.projectDir + '/**/node_modules/**/*',
+    '!' + env.projectDir + '/**/bower_components/**/*'
   ];
   jsFiles = [
     env.projectDir + '/**/*.js',
-    '!' + env.projectDir + '/**/*.min.js'
+    '!' + env.projectDir + '/**/*.min.js',
+    '!' + env.projectDir + '/**/node_modules/**/*',
+    '!' + env.projectDir + '/**/bower_components/**/*'
   ];
   phpFiles = [
     env.projectDir + '/**/*.php',
@@ -68,7 +72,7 @@ module.exports = function(grunt) {
         bin: './vendor/bin/phpmd',
         reportFormat: 'text',
         rulesets: 'codesize,unusedcode',
-        exclude: '*.features*.inc,*.field_group.inc,*.views_default.inc,*.strongarm.inc'
+        exclude: '*.features*.inc,*.field_group.inc,*.views_default.inc'
       },
       app: {
         dir: env.projectDir
@@ -158,3 +162,4 @@ module.exports = function(grunt) {
     }
   );
 };
+
