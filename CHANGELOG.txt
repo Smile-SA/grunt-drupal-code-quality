@@ -1,3 +1,8 @@
+v8.0.5
+  date: 2015-06-25
+  changes:
+    - Ignore vendor files and add node environment to eslint.
+
 v8.0.4
   date: 2015-06-25
   changes:
