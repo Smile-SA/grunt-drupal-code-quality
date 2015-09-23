@@ -1,3 +1,8 @@
+v7.0.5
+  date: 2015-09-23
+  changes:
+    - Ignore vendor files and add node environment to eslint. 
+
 v7.0.4
   date: 2015-06-25
   changes:
