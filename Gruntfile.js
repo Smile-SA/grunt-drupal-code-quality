@@ -7,17 +7,25 @@ module.exports = function(grunt) {
 
   cssFiles = [
     env.projectDir + '/**/*.css',
-    '!' + env.projectDir + '/**/*.min.css'
+    '!' + env.projectDir + '/**/*.min.css',
+    '!' + env.projectDir + '/**/node_modules/**/*',
+    '!' + env.projectDir + '/**/bower_components/**/*'
   ];
   jsFiles = [
     env.projectDir + '/**/*.js',
-    '!' + env.projectDir + '/**/*.min.js'
+    '!' + env.projectDir + '/**/*.min.js',
+    '!' + env.projectDir + '/**/node_modules/**/*',
+    '!' + env.projectDir + '/**/bower_components/**/*'
   ];
   phpFiles = [
     env.projectDir + '/**/*.php',
     env.projectDir + '/**/*.inc',
     env.projectDir + '/**/*.module',
-    env.projectDir + '/**/*.install'
+    env.projectDir + '/**/*.install',
+    '!' + env.projectDir + '/**/*.features*.inc',
+    '!' + env.projectDir + '/**/*.field_group.inc',
+    '!' + env.projectDir + '/**/*.views_default.inc',
+    '!' + env.projectDir + '/**/*.strongarm.inc'
   ];
 
   /* Load configuration */
@@ -63,7 +71,8 @@ module.exports = function(grunt) {
       options: {
         bin: './vendor/bin/phpmd',
         reportFormat: 'text',
-        rulesets: 'codesize,unusedcode'
+        rulesets: 'codesize,unusedcode',
+        exclude: '*.features*.inc,*.field_group.inc,*.views_default.inc'
       },
       app: {
         dir: env.projectDir
@@ -153,3 +162,4 @@ module.exports = function(grunt) {
     }
   );
 };
+
