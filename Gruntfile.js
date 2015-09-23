@@ -21,11 +21,7 @@ module.exports = function(grunt) {
     env.projectDir + '/**/*.php',
     env.projectDir + '/**/*.inc',
     env.projectDir + '/**/*.module',
-    env.projectDir + '/**/*.install',
-    '!' + env.projectDir + '/**/*.features*.inc',
-    '!' + env.projectDir + '/**/*.field_group.inc',
-    '!' + env.projectDir + '/**/*.views_default.inc',
-    '!' + env.projectDir + '/**/*.strongarm.inc'
+    env.projectDir + '/**/*.install'
   ];
 
   /* Load configuration */
@@ -71,8 +67,7 @@ module.exports = function(grunt) {
       options: {
         bin: './vendor/bin/phpmd',
         reportFormat: 'text',
-        rulesets: 'codesize,unusedcode',
-        exclude: '*.features*.inc,*.field_group.inc,*.views_default.inc'
+        rulesets: 'codesize,unusedcode'
       },
       app: {
         dir: env.projectDir
