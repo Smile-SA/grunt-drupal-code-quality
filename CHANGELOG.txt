@@ -1,3 +1,9 @@
+v8.1.0
+  date: 2016-04-08
+  changes:
+    - Update plugin with last Drupal best practices.
+
+
 v8.0.5
   date: 2015-06-25
   changes:
