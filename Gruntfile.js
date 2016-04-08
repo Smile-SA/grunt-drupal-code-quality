@@ -46,6 +46,11 @@ module.exports = function(grunt) {
         src: jsFiles
       }
     },
+    eslintFiles: {
+      app: {
+        src: phpFiles
+      }
+    },
 
     // PHP related tasks.
     phpcs: {
@@ -88,6 +93,7 @@ module.exports = function(grunt) {
           configSrcPath : [
             'csslint.app.src',
             'eslint.app.src',
+            'eslintFiles.app.src',
             'phpcs.app.src',
             'phpcsFiles.app.src',
             'phpmdFiles.app.src'
@@ -97,6 +103,18 @@ module.exports = function(grunt) {
     }
 
   });
+
+  // Because eslint think it's an error not to have to files to check, we don't launch the task in this case.
+  // Pull request has been made to fix this error in the grunt-eslint module : https://github.com/sindresorhus/grunt-eslint/pull/115
+  grunt.registerMultiTask(
+    'eslintFiles',
+    'Custom eslint wrapping task.',
+    function() {
+      if (this.filesSrc.length > 0) {
+        grunt.task.run('eslint');
+      }
+    }
+  );
 
   // Because phpcs think it's an error not to have to files to check, we don't launch the task in this case.
   // Pull request has been made to fix this error in the grunt-phpcs module : https://github.com/SaschaGalley/grunt-phpcs/pull/45
@@ -131,11 +149,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-git-index-files');
   grunt.loadNpmTasks('grunt-phpcs');
   grunt.loadNpmTasks('grunt-phpmd');
-  grunt.loadNpmTasks('gruntify-eslint');
+  grunt.loadNpmTasks('grunt-eslint');
 
   /* Define tasks */
   grunt.registerTask('check', ['csslint', 'eslint', 'phpcs', 'phpmd']);
-  grunt.registerTask('checkCommit', ['gitIndexFiles', 'csslint', 'eslint', 'phpcsFiles', 'phpmdFiles']);
+  grunt.registerTask('checkCommit', ['gitIndexFiles', 'csslint', 'eslintFiles', 'phpcsFiles', 'phpmdFiles']);
   grunt.registerTask('default', 'check');
 
   /* Help task */

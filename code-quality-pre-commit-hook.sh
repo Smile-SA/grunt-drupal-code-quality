@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# To enable this hook copy it into .git/hooks and rename it pre-commit :
-# cp scripts/code-quality/code-quality-pre-commit-hook.sh .git/hooks/pre-commit
+# To enable this hook link it into .git/hooks and with the command :
+# ln -s /[project-dir]/scripts/code-quality/code-quality-pre-commit-hook.sh /[project-dir]/.git/hooks/pre-commit
 
 
 
