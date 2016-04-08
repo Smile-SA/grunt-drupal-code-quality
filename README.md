@@ -134,7 +134,7 @@ Example :
 }
 ```
 
-Finally install the Git hook by copying the file named `code-quality-pre-commit-hook.sh` in the `.git/hooks/` directory and rename that file `pre-commit`.
+Finally install the Git hook by creating a symbolic link in the `.git/hooks/` nammed `pre-commit` linked to the file named `code-quality-pre-commit-hook.sh` in the code quality folder.
 
 
 

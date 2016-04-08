@@ -1,7 +1,7 @@
 {
   "require-dev": {
-    "drupal/coder": "7.*",
-    "phpmd/phpmd": "2.*",
-    "squizlabs/php_codesniffer": "1.*"
+    "drupal/coder": "@stable",
+    "phpmd/phpmd": "@stable",
+    "squizlabs/php_codesniffer": "@stable"
   }
 }
