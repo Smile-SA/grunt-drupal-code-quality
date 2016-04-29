@@ -1,4 +1,4 @@
-# grunt-drupal-code-quality v8.1.0
+# grunt-drupal-code-quality v8.1.1
 
 ## Description
 
@@ -69,7 +69,7 @@ curl -sSL http://cdn.rawgit.com/Smile-SA/grunt-drupal-code-quality/8.x-1.x/insta
 
 You can use git tags instead of a branch name :
 ```shell
-curl -sSL http://cdn.rawgit.com/Smile-SA/grunt-drupal-code-quality/8.x-1.x/installer.sh | bash -s v8.1.0
+curl -sSL http://cdn.rawgit.com/Smile-SA/grunt-drupal-code-quality/8.x-1.x/installer.sh | bash -s v8.1.1
 ```
 
 By default the code quality tools will be installed in the following directory : `./scripts/code-quality`
