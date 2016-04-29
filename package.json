@@ -1,6 +1,6 @@
 {
   "name": "grunt-drupal-code-quality",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "Code quality tools for Drupal 7.",
   "author": "Tony Cabaye <tonai59+github@gmail.com>",
   "contributors": [],

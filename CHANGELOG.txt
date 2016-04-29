@@ -1,12 +1,18 @@
+v7.1.1
+  date: 2016-04-29
+  changes:
+    - Bad file list for eslintFiles task.
+
 v7.1.0
   date: 2016-04-08
   changes:
     - Update plugin with last Drupal best practices.
 
+
 v7.0.5
   date: 2015-09-23
   changes:
-    - Ignore vendor files and add node environment to eslint. 
+    - Ignore vendor files and add node environment to eslint.
 
 v7.0.4
   date: 2015-06-25
