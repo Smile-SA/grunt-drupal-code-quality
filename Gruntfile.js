@@ -48,7 +48,7 @@ module.exports = function(grunt) {
     },
     eslintFiles: {
       app: {
-        src: phpFiles
+        src: jsFiles
       }
     },
 
