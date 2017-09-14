@@ -21,9 +21,9 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "grunt-eslint": "^17.0.0",
     "grunt": "^1.0.1",
     "grunt-contrib-csslint": "^1.0.0",
+    "grunt-eslint": "^20.1.0",
     "grunt-git-index-files": "^0.0.2",
     "grunt-phpcs": "^0.4.0",
     "grunt-phpmd": "^0.1.1"
